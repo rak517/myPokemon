@@ -1,0 +1,45 @@
+.Header {
+  background-color: #bdc3c7;
+  padding: 10px 20px;
+}
+
+.Header nav ul{
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.Header nav ul li {
+  font-size: 1.2rem;
+  display: inline;
+}
+
+/* Link */
+.Header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.Header nav ul li a:hover {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 0,2em;
+  text-decoration-thickness: 2px;
+}
+
+.Header .header_search {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.Header .search_input {
+  width: 19%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  left: 37px;
+}
