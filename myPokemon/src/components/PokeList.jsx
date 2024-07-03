@@ -20,12 +20,14 @@ const PokeList = () => {
           const speciesResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonResponse.data.id}`);
           const koreanName = speciesResponse.data.names.find(name => name.language.name === 'ko'); // 한국이름 없으면 영어이름으로 표시
 
+          const gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonResponse.data.id}.gif`;
           // 상세정보 객체로 저장
           return {
             id: pokemonResponse.data.id,
             name: pokemonResponse.data.name,
             koreanName: koreanName ? koreanName.name : pokemon.name,
-            imageUrl: pokemonResponse.data.sprites.front_default
+            //imageUrl: pokemonResponse.data.sprites.front_default
+            imageUrl: gifUrl
           }
         })
       )

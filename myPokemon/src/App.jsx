@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import PokeList from './components/PokeList'
-import PokeDetails from './components/PokeDetails'
+import PokeDetailPage from './components/PokeDetailPage'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import MyPokedex from './components/MyPokedex'
-
-
-
 import './App.css'
 
 function App() {
@@ -18,7 +15,7 @@ function App() {
         <Header />
         <Routes >
           <Route path='/' element={<PokeList />} />
-          <Route path='/pokemon/:id' element={<PokeDetails />} />
+          <Route path='/pokemon/:id' element={<PokeDetailPage />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
           <Route path='/mypokedex' element={<MyPokedex />} />
