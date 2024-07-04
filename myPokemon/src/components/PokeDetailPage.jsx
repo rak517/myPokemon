@@ -8,6 +8,7 @@ const PokeDetailPage = () => {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState(null);
 
+
   useEffect(() => {
     const fetchPokemon = async () => {
       try {

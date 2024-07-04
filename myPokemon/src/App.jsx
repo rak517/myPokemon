@@ -6,8 +6,11 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import MyPokedex from './components/MyPokedex'
 import './App.css'
+import { useState } from 'react'
 
 function App() {
+  const [users, setUsers] = useState([]);              //사용자 정보
+  const [isLogin, setIsLogin] = useState(false);       //로그인 여부
 
   return (
     <Router>
@@ -16,8 +19,8 @@ function App() {
         <Routes >
           <Route path='/' element={<PokeList />} />
           <Route path='/pokemon/:id' element={<PokeDetailPage />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login setIsLogin={setIsLogin} users={users} />} />
+          <Route path='/signup' element={<SignUp setUsers={setUsers} />} />
           <Route path='/mypokedex' element={<MyPokedex />} />
         </Routes>
       </div>
