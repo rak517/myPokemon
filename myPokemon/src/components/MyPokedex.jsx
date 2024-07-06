@@ -3,8 +3,9 @@
 const MyPokedex = () => {
 
   return (
-    <div>
-      <h1>MyPokedex</h1>
+    <div className="MyPokedex">
+      <h2>나만의 즐겨찾기</h2>
+
     </div>
   )
 }
