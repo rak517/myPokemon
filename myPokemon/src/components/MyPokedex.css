@@ -1,0 +1,61 @@
+.MyPokedex {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.favorite_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.favorite_poke {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.favorite_poke:hover {
+  transform: scale(1.05);
+}
+
+.favorite_poke img {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.favorite_name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.favorite_id {
+  font-size: 12px;
+  color: #777;
+}
+
+.favorite_poke button {
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.favorite_poke button:hover {
+  background-color: #ff4b4b;
+}

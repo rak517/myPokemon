@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 import './Header.css'
 
 
-const Header = () => {
+const Header = ({ search, setSearch }) => {
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
 
   return (
     <header className="Header">
@@ -15,7 +19,8 @@ const Header = () => {
         </ul>
       </nav>
       <div className="header_search">
-        <input className="search_input" type="text" placeholder="Search Pokemon.." />
+        <input className="search_input" type="text" placeholder="Search Pokemon.."
+          value={search} onChange={handleSearch} />
       </div>
     </header>
   )

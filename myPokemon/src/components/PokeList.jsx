@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import './PokeList.css';
 
-const PokeList = () => {
+const PokeList = ({ addMyPokedex, search }) => {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
@@ -38,11 +38,16 @@ const PokeList = () => {
     fetchPokemons();
   }, [])
 
+  const searchedPokemons = pokemons.filter((pokemons) => {
+    return pokemons.name.toLowerCase().includes(search.toLowerCase()) ||
+      pokemons.koreanName.includes(search);
+
+  })
 
   return (
     <div className="List">
       {
-        pokemons.map((pokemons) => (
+        searchedPokemons.map((pokemons) => (
           <div key={pokemons.id} className="pokemon_item">
             {/* 상세페이지 이동 */}
             <Link to={`/pokemon/${pokemons.id}`} className="pokemon_link">
@@ -50,7 +55,7 @@ const PokeList = () => {
               <p className="pokemon_name">{pokemons.koreanName}</p>
               <p className="pokemon_id">#{pokemons.id}</p>
             </Link>
-            <button>내 도감에 추가</button>
+            <button onClick={() => addMyPokedex(pokemons)}>내 도감에 추가</button>
           </div>
         ))
       }
