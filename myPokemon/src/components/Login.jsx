@@ -1,25 +1,46 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Login.css';
+import axios from "axios";
 
 const Login = ({ setIsLogin, users }) => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const user = users.find((user) => user.userId === userId && user.password === password);
+  //   if (user) {
+  //     setIsLogin(true);
+  //     nav('/');
+  //   } else {
+  //     alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+  //     setUserId('');
+  //     setPassword('');
+  //   }
+
+  // }
   const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const user = users.find((user) => user.userId === userId && user.password === password);
-    if (user) {
-      setIsLogin(true);
-      nav('/');
-    } else {
-      alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-      setUserId('');
-      setPassword('');
-    }
+    const data = {
+      id: userId,
+      password: password,
+    };
 
+
+    axios.post('http://localhost:8080/member/login', data)
+      .then((response) => {
+        alert('로그인이 완료되었습니다.');
+        nav('/');
+        setIsLogin(true);
+
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('로그인에 실패하였습니다. 에러: ' + error.message);
+      });
   }
 
   return (

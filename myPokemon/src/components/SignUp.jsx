@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './SignUp.css';
+import axios from "axios";
+import update from 'immutability-helper';
 
-const SignUp = ({ setUsers }) => {
+const SignUp = ({ users, setUsers }) => {
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ const SignUp = ({ setUsers }) => {
   const [email, setEmail] = useState("");
   const nav = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit2 = (e) => {
     e.preventDefault();
 
     if (password !== passwordCheck) {
@@ -18,14 +20,32 @@ const SignUp = ({ setUsers }) => {
       return;
     }
 
-    setUsers((prevUsers) => [...prevUsers, { userName, userId, password, email }]);
-    alert('회원가입이 완료되었습니다.');
-    nav('/login');
+    const data = {
+      name: userName,
+      email: email,
+      id: userId,
+      password: password,
+    };
+    //회원가입에 실패하였습니다. 에러: Request failed with status code 500
+    axios.post('http://localhost:8080/member/register', data)
+      .then((response) => {
+        alert('회원가입이 완료되었습니다.');
+        nav('/login');
+        setUsers(prevUsers =>
+          update(prevUsers || [], {
+            $push: [response.data]
+          })
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('회원가입에 실패하였습니다. 에러: ' + error.message);
+      });
   }
 
   return (
     <div className="SignUp">
-      <form className="signUp_form" onSubmit={handleSubmit}>
+      <form className="signUp_form" onSubmit={handleSubmit2}>
         <label>
           이름 : <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Name" />
         </label>
@@ -43,9 +63,8 @@ const SignUp = ({ setUsers }) => {
         </label>
         <button type="submit">회원가입</button>
       </form>
-
     </div>
-  )
+  );
 }
 
 export default SignUp;

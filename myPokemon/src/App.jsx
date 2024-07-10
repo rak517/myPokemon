@@ -17,6 +17,8 @@ function App() {
   const [myPokedex, setMyPokedex] = useState([]);      //나만의 포켓몬 리스트
   const [search, setSearch] = useState('');            //검색어
 
+
+
   const addMyPokedex = (pokemon) => {
     setMyPokedex([...myPokedex, pokemon]);
     toast.success(`${pokemon.koreanName}을(를) 추가했습니다.`, {
