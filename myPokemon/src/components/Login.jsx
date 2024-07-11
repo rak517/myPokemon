@@ -23,6 +23,7 @@ const Login = ({ setIsLogin, users }) => {
 
   // }
   const handleSubmit = (e) => {
+    e.preventDefault();
 
     const data = {
       id: userId,
@@ -32,10 +33,16 @@ const Login = ({ setIsLogin, users }) => {
 
     axios.post('http://localhost:8080/member/login', data)
       .then((response) => {
-        alert('로그인이 완료되었습니다.');
-        nav('/');
-        setIsLogin(true);
+        if (response.data === 'success') {
 
+          alert('로그인이 완료되었습니다.');
+          nav('/');
+          setIsLogin(true);
+        } else {
+          alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+          setUserId('');
+          setPassword('');
+        }
       })
       .catch((error) => {
         console.error(error);
