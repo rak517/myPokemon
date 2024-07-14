@@ -37,6 +37,20 @@ public class MemberController {
             return ResponseEntity.ok("fail");
         }
     }
+    @PostMapping("/modify")
+    public void modify(@RequestBody Member member) throws Exception {
+        service.modify(member);
+    }
+
+    @PostMapping("/remove")
+    public void remove(@RequestBody Member member) throws Exception {
+        service.remove(member.getId());
+    }
+
+    @PostMapping("/list")
+    public void list() throws Exception {
+        service.list();
+    }
 
 }
 
